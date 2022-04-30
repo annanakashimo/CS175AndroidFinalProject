@@ -10,6 +10,9 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
+# Must keep reference to Library .asset files
+!/[Ll]ibrary/*.asset
+
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 
@@ -59,5 +62,7 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-# MacOS specific
+# MacOS Specific
 .DS_Store
+
+
