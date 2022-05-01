@@ -25,6 +25,9 @@ public class PlayerMovement : MonoBehaviour
     private bool joystickPressed = false;
     private bool touchStart = false; // finger is pressed down on the screen
 
+    // Buttons
+    public Transform jumpButton;
+
     //Flipping
     Vector2 directionalInput;
     
@@ -36,8 +39,6 @@ public class PlayerMovement : MonoBehaviour
         gravity = -(2 * maxJump)/ Mathf.Pow(timeToJumpApex, 2);
         maxJump = Mathf.Abs(gravity) * timeToJumpApex;
         minJump = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJump);
-
-        
     }
 
     // Update is called once per frame
@@ -46,15 +47,6 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("grounded", grounded);
 
         //Go back and check if there is ground under player
-
-        //Short Jump
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            if (velocity.y > minJump)
-            {
-                velocity.y = minJump;
-            }
-        }
 
         if (Input.GetMouseButtonDown(0)) { // Get pointA
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -71,10 +63,14 @@ public class PlayerMovement : MonoBehaviour
                                     Input.mousePosition.y, 
                                     Camera.main.transform.position.z));
                 }
+                if (hit.collider.gameObject.tag == "Jump") {
+                    if (velocity.y > minJump) velocity.y = minJump;
+                    if (grounded) Jump();
+                }
             }
         }
 
-        if (joystickPressed && Input.GetMouseButton(0)){ // Get pointB
+        if (joystickPressed && Input.GetMouseButton(0)) { // Get pointB
             touchStart = true;
             pointA = outerCircle.transform.position;
             pointB = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
@@ -82,12 +78,6 @@ public class PlayerMovement : MonoBehaviour
             touchStart = false;
             joystickPressed = false;
             innerCircle.transform.position = outerCircle.transform.position;
-        }
-
-        //Jump
-        if(Input.GetKeyUp(KeyCode.Space) && grounded)
-        {
-            Jump();     
         }
     }
 
