@@ -10,6 +10,10 @@ public class PlayerAttack : MonoBehaviour
     public Animator anim;
     private PlayerMovement playerMovement;
     private float cooldownTimer = Mathf.Infinity;
+
+    // Buttons
+    public Transform attackButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +25,16 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.Z) && cooldownTimer > attackCooldown && playerMovement.canAttack())
-            Attack();
+        if (cooldownTimer > attackCooldown && playerMovement.canAttack() && Input.GetMouseButton(0)) {
+            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 origin = new Vector2(pos.x, pos.y);
+            RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.zero);
+            if (hit != null && hit.collider != null && hit.collider.gameObject != null) {
+                if (hit.collider.gameObject.tag == "Attack") {
+                    Attack();
+                }
+            }
+        }
         
         cooldownTimer += Time.deltaTime;
     }

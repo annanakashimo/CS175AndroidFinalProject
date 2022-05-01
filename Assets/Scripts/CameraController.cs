@@ -11,6 +11,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Transform innerCircle;
     [SerializeField] private Transform outerCircle;
+    [SerializeField] private Transform jumpButton;
+    [SerializeField] private Transform attackButton;
     [SerializeField] private float aheadDistance;
     [SerializeField] private float cameraSpeed;
     private float lookAhead;
@@ -24,6 +26,8 @@ public class CameraController : MonoBehaviour
         transform.position = new Vector3(player.position.x + lookAhead, transform.position.y, transform.position.z);
         innerCircle.transform.position = new Vector3(player.position.x + lookAhead - 15 + (innerCircle.transform.position.x - outerCircle.transform.position.x), innerCircle.transform.position.y, innerCircle.transform.position.z);
         outerCircle.transform.position = new Vector3(player.position.x + lookAhead - 15, outerCircle.transform.position.y, outerCircle.transform.position.z);
+        jumpButton.transform.position = new Vector3(player.position.x + lookAhead + 17, jumpButton.transform.position.y, jumpButton.transform.position.z);
+        attackButton.transform.position = new Vector3(player.position.x + lookAhead + 14, attackButton.transform.position.y, attackButton.transform.position.z);
         lookAhead = Mathf.Lerp(lookAhead, (aheadDistance * player.localScale.x), Time.deltaTime * cameraSpeed);
     }
 
