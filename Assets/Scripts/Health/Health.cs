@@ -67,4 +67,8 @@ public class Health : MonoBehaviour
         Physics2D.IgnoreLayerCollision(10, 11, false);
         invulnerable = false;
     }
+    public bool isDead()
+    {
+        return dead;
+    }
 }
