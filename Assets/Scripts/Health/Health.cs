@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Health : MonoBehaviour
 {
+    //public GameObject FloatingTextPrefab;
     [Header ("Health")]
     [SerializeField] private float startingHealth;
     public float currentHealth { get; private set; }
@@ -33,6 +34,11 @@ public class Health : MonoBehaviour
         {
             anim.SetTrigger("hurt");
             StartCoroutine(Invunerability());
+            /*if (FloatingTextPrefab)
+            {
+                ShowFloatingText();
+            }*/
+            
         }
         else
         {
@@ -49,6 +55,12 @@ public class Health : MonoBehaviour
             }
         }
     }
+
+    /*public void ShowFloatingText()
+    {
+        Instantiate(FloatingTextPrefab, transform.position, Quaternion.identity, transform);
+
+    }*/
     public void AddHealth(float _value)
     {
         currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
