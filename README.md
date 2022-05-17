@@ -5,4 +5,4 @@ We developed using several branches based off of a main branch, but the final co
 
 The Unity version used for this project was 2020.3.33f1, and it must be used to build the project in Unity. Of course, the Android version of the game can evaluated using the APK provided in this repository. This was generated targeting API 29. The APK is called `GuardianInTheSky.apk`.
 
-Finally, our backlog is stored at `Group6ProjectBacklog.xlsx`, containing all information about tasks we planned and completed. Our final report is stored at `FinalReport.docx`.
+Finally, our backlog and final report is accessible on Google Drive. The folder where they are stored is https://drive.google.com/drive/folders/1PEuS35sO-c0Kd1u0Lygl4fZ4M-vom08L?usp=sharing.
